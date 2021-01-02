@@ -1,0 +1,14 @@
+.home {
+  margin-top: 50px;
+}
+
+.home__blogsHeader {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.home__blogsHeaderText {
+  font-size: 35px;
+  border-bottom: 5px solid black;
+  padding-bottom: 5px;
+}

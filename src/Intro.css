@@ -1,0 +1,13 @@
+.intro {
+  border: 1px solid black;
+  height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg");
+  background-size: cover;
+  color: white;
+  font-family: "Poppins";
+  font-size: 30px;
+}
