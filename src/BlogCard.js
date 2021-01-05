@@ -1,3 +1,4 @@
+import { IconButton } from "@material-ui/core";
 import {
   CommentOutlined,
   ShareOutlined,
@@ -21,9 +22,14 @@ function BlogCard({ title, image, description, slug }) {
           </div>
           <div className="blogCard__contentBoxOptions">
             <div className="blogCard__options">
-              <ThumbUpOutlined className="blogCard__option" />
+              <IconButton>
+                <ThumbUpOutlined className="blogCard__option" />
+              </IconButton>
               0
-              <CommentOutlined className="blogCard__option" />0
+              <IconButton>
+                <CommentOutlined className="blogCard__option" />
+              </IconButton>
+              0
             </div>
             <div className="blogCard__options">
               <ShareOutlined className="blogCard__option" />
