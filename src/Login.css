@@ -1,0 +1,62 @@
+.login {
+  background-image: url("https://pbs.twimg.com/media/DMDIKcyWsAEsKDj.jpg");
+  height: 100vh;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login__container {
+  display: flex;
+  flex-direction: column;
+  padding: 45px;
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+.login__inputContainer {
+  display: flex;
+  width: 250px;
+  background-color: white;
+  padding: 10px 15px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  border-radius: 9999px;
+}
+
+.login__inputContainer input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  font-size: 17px;
+  outline: none;
+}
+
+.login__loginBtn,
+.login__registerBtn {
+  margin-bottom: 10px;
+  border: none;
+  outline: none;
+  padding: 10px;
+  border-radius: 9999px;
+  background-color: #3498db;
+  font-size: 20px;
+  color: white;
+}
+
+.login__registerBtn {
+  background-color: #2ecc71;
+  margin: 0;
+}
+
+.login__loginBtn:hover {
+  background-color: #2980b9;
+}
+
+.login__registerBtn:hover {
+  background-color: #27ae60;
+}

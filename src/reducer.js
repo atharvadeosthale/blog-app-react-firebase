@@ -1,15 +1,21 @@
 export const initialState = {
   basket: [],
   user: null,
+  role: null,
 };
 
 const reducer = (state, action) => {
   console.log(action);
   switch (action.type) {
-    case "ADD_TO_BASKET":
+    case "SET_USER":
       return {
         ...state,
-        basket: [...state.basket, action.item],
+        user: action.user,
+      };
+    case "SET_ROLE":
+      return {
+        ...state,
+        role: action.role,
       };
 
     default:

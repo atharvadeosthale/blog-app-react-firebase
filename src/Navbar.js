@@ -2,8 +2,16 @@ import { Avatar } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { auth } from "./firebase";
+import { useStateValue } from "./StateProvider";
 
 function Navbar() {
+  const [{ user, role }, dispatch] = useStateValue();
+
+  const logout = () => {
+    auth.signOut();
+  };
+
   return (
     <div className="navbar">
       <div className="container">
@@ -25,10 +33,21 @@ function Navbar() {
               <Avatar style={{ height: 35, width: 35 }} />
             </div>
             <div className="navbar__item">
-              <Link to="/login" className="navbar__link">
-                Login
-              </Link>
+              {user ? (
+                <Link onClick={logout} className="navbar__link">
+                  Logout
+                </Link>
+              ) : (
+                <Link to="/login" className="navbar__link">
+                  Login
+                </Link>
+              )}
             </div>
+            {role === "admin" && (
+              <div className="navbar__item">
+                <Link className="navbar__link">Write</Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
