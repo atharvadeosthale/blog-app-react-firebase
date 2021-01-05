@@ -23,7 +23,6 @@ function BlogCard({ title, image, description, slug }) {
             <div className="blogCard__options">
               <ThumbUpOutlined className="blogCard__option" />
               0
-              <ThumbDownOutlined className="blogCard__option" />0
               <CommentOutlined className="blogCard__option" />0
             </div>
             <div className="blogCard__options">

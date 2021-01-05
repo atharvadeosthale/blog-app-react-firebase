@@ -1,4 +1,4 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar, Drawer } from "@material-ui/core";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
@@ -6,10 +6,16 @@ import { auth } from "./firebase";
 import { useStateValue } from "./StateProvider";
 
 function Navbar() {
-  const [{ user, role }, dispatch] = useStateValue();
+  const [{ user, role, drawer }, dispatch] = useStateValue();
 
   const logout = () => {
     auth.signOut();
+  };
+
+  const openDrawer = () => {
+    dispatch({
+      type: "OPEN_DRAWER",
+    });
   };
 
   return (
@@ -45,7 +51,9 @@ function Navbar() {
             </div>
             {role === "admin" && (
               <div className="navbar__item">
-                <Link className="navbar__link">Write</Link>
+                <Link className="navbar__link" onClick={openDrawer}>
+                  Write
+                </Link>
               </div>
             )}
           </div>

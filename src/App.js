@@ -6,6 +6,8 @@ import Navbar from "./Navbar";
 import Login from "./Login";
 import { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
+import { Drawer } from "@material-ui/core";
+import Write from "./Write";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -42,6 +44,7 @@ function App() {
 
   return (
     <div className="app">
+      <Write />
       <Router>
         {/* Navbar component comes here */}
         <Navbar />

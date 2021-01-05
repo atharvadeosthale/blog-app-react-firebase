@@ -1,0 +1,39 @@
+.write {
+  width: 100%;
+}
+
+.write__container {
+  width: 60vw;
+  padding: 30px;
+}
+
+.write__textEditor {
+  border: 1px solid black;
+}
+
+.write__titleBox {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+.write__inputFile {
+  margin-top: 30px;
+}
+
+.write__publishBtn {
+  margin-top: 30px;
+  padding: 15px;
+  font-size: 20px;
+  border: none;
+  color: green;
+  border-radius: 3px;
+}
+
+.write__cardDescription {
+  margin-bottom: 30px;
+
+  width: 100%;
+}

@@ -2,6 +2,7 @@ export const initialState = {
   basket: [],
   user: null,
   role: null,
+  drawer: false,
 };
 
 const reducer = (state, action) => {
@@ -16,6 +17,18 @@ const reducer = (state, action) => {
       return {
         ...state,
         role: action.role,
+      };
+
+    case "OPEN_DRAWER":
+      return {
+        ...state,
+        drawer: true,
+      };
+
+    case "CLOSE_DRAWER":
+      return {
+        ...state,
+        drawer: false,
       };
 
     default:
