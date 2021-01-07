@@ -9,6 +9,7 @@ import { useStateValue } from "./StateProvider";
 import { Drawer } from "@material-ui/core";
 import Write from "./Write";
 import Blog from "./Blog";
+import Comment from "./Comment";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -29,6 +30,15 @@ function App() {
             role: data.role,
           });
         });
+        db.collection("users")
+          .where("uid", "==", auth.uid)
+          .onSnapshot((snapshot) => {
+            const data = snapshot.docs[0].data();
+            dispatch({
+              type: "SET_NAME",
+              name: data.name,
+            });
+          });
       } else {
         dispatch({
           type: "SET_USER",
@@ -45,6 +55,7 @@ function App() {
   return (
     <div className="app">
       <Write />
+      <Comment />
       <Router>
         {/* Navbar component comes here */}
         <Navbar />

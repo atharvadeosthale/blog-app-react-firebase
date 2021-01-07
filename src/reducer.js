@@ -3,6 +3,9 @@ export const initialState = {
   user: null,
   role: null,
   drawer: false,
+  commentDrawer: false,
+  commentBlog: "null",
+  name: "",
 };
 
 const reducer = (state, action) => {
@@ -29,6 +32,26 @@ const reducer = (state, action) => {
       return {
         ...state,
         drawer: false,
+      };
+
+    case "OPEN_COMMENT_DRAWER":
+      return {
+        ...state,
+        commentDrawer: true,
+        commentBlog: action.blogId,
+      };
+
+    case "CLOSE_COMMENT_DRAWER":
+      return {
+        ...state,
+        commentDrawer: false,
+        commentBlog: "null",
+      };
+
+    case "SET_NAME":
+      return {
+        ...state,
+        name: action.name,
       };
 
     default:

@@ -1,0 +1,37 @@
+.comment__container {
+  width: 60vw;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.comment__commentsContainer {
+  height: 80%;
+  border: 1px solid black;
+}
+
+.comment__commentBox {
+  height: 20%;
+  border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comment__input {
+  width: 80%;
+  font-size: 20px;
+  padding: 10px;
+  border: none;
+}
+
+.comment__inputContainer {
+  border: 1px solid black;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  justify-content: space-around;
+  width: 75%;
+}

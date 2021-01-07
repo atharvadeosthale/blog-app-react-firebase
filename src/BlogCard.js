@@ -11,12 +11,14 @@ import { useStateValue } from "./StateProvider";
 import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import "./BlogCard.css";
+import { useHistory } from "react-router-dom";
 
 function BlogCard({ title, image, description, id }) {
   const [likes, setLikes] = useState(0);
   const [comments, setComments] = useState(0);
   const [liked, setLiked] = useState(false);
   const [{ user }, dispatch] = useStateValue();
+  const history = useHistory();
 
   useEffect(() => {
     const query = db.collection("blogs").doc(id).get();
@@ -24,10 +26,14 @@ function BlogCard({ title, image, description, id }) {
       setLikes(snapshot.data().likes.length);
       setComments(snapshot.data().comments.length);
       snapshot.data().likes.forEach((like) => {
-        if (user?.id === like.userId) setLiked(true);
+        if (user?.uid === like.userId) setLiked(true);
       });
     });
   }, []);
+
+  const goToBlog = () => {
+    history.push(`/blog/${id}`);
+  };
 
   const likePost = () => {
     // Check auth
@@ -59,7 +65,12 @@ function BlogCard({ title, image, description, id }) {
     setLikes(likes + 1);
   };
 
-  const commentPost = () => {};
+  const commentPost = () => {
+    dispatch({
+      type: "OPEN_COMMENT_DRAWER",
+      blogId: id,
+    });
+  };
 
   return (
     <div className="blogCard">
@@ -68,7 +79,7 @@ function BlogCard({ title, image, description, id }) {
           <img src={image} className="blogCard__img" />
         </div>
         <div className="blogCard__contentBox">
-          <div className="blogCard__contentBoxDetails">
+          <div className="blogCard__contentBoxDetails" onClick={goToBlog}>
             <h1>{title}</h1>
             <p className="blogCard__description">{description}</p>
           </div>
