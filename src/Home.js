@@ -1,9 +1,36 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import BlogCard from "./BlogCard";
 import "./Home.css";
+import { db, storage } from "./firebase";
 import Intro from "./Intro";
 
 function Home() {
+  const [blogs, setBlogs] = useState([]);
+
+  // fetch blog posts
+  useEffect(() => {
+    console.log("🔥");
+    const query = db
+      .collection("blogs")
+      .get()
+      .then(async (snapshot) => {
+        snapshot.docs.forEach(async (doc) => {
+          let data = doc.data();
+          let image = await storage.child(data.filename).getDownloadURL();
+          data.id = doc.id;
+          data.downloadUrl = image;
+          console.log(data);
+          setBlogs((oldBlogs) => [...oldBlogs, data]);
+        });
+      });
+    console.log(blogs);
+  }, []);
+
+  useEffect(() => {
+    console.log(blogs);
+  }, [blogs]);
+
   return (
     <div className="home">
       <Intro />
@@ -11,12 +38,14 @@ function Home() {
         <span className="home__blogsHeaderText">BLOGS</span>
       </div>
       <div className="container home__blogs">
-        <BlogCard
-          description="In this blog I tell you why having a portfolio website is important."
-          title="Importance of having a portfolio"
-          slug="importance-of-having-portfolio"
-          image="https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/07/shutterstock_582803470.jpg?w=750"
-        />
+        {blogs.map((blog) => (
+          <BlogCard
+            description={blog?.description}
+            title={blog?.title}
+            id={blog.id}
+            image={blog.downloadUrl}
+          />
+        ))}
       </div>
     </div>
   );

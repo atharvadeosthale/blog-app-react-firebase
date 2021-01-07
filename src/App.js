@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { useStateValue } from "./StateProvider";
 import { Drawer } from "@material-ui/core";
 import Write from "./Write";
+import Blog from "./Blog";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -15,7 +16,6 @@ function App() {
   useEffect(() => {
     auth.onAuthStateChanged((auth) => {
       // check auth and update state in context api
-      console.log("[AUTH]", auth);
       if (auth) {
         dispatch({
           type: "SET_USER",
@@ -51,6 +51,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/blog/:id" component={Blog} />
         </Switch>
       </Router>
     </div>
