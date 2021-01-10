@@ -6,6 +6,7 @@ import MUIRichTextEditor from "mui-rte";
 import { EditorState } from "draft-js";
 import RichTextEditor from "react-rte";
 import { db, storage } from "./firebase";
+import { toast } from "react-toastify";
 
 function Write() {
   const [{ drawer, role }, dispatch] = useStateValue();
@@ -26,11 +27,11 @@ function Write() {
     try {
       // check if not admin
       if (role !== "admin") {
-        return alert("You're not authorized to make posts on this site.");
+        return toast.error("You're not authorized to make posts on this site.");
       }
       // validate everything
       if (title === "" || description === "" || !inputFile) {
-        return alert("Please fill all the fields to publish the blog!");
+        return toast.error("Please fill all the fields to publish the blog!");
       }
       // upload pic
       await storage.child(`uploads/${inputFile.name}`).put(inputFile);
@@ -43,12 +44,12 @@ function Write() {
         comments: [],
         content: drawerContent.toString("html"),
       });
-      alert("Blog published!");
+      toast.success("Blog published!");
       dispatch({
         type: "CLOSE_DRAWER",
       });
     } catch (err) {
-      return alert(err.message);
+      return toast.error(err.message);
     }
   };
 

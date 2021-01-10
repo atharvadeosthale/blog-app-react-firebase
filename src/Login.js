@@ -1,6 +1,7 @@
 import { Email, Person, VpnKey } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import { auth, db } from "./firebase";
 import "./Login.css";
 import { useStateValue } from "./StateProvider";
@@ -30,7 +31,7 @@ function Login() {
           });
         }
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => toast.error(err.message));
   };
 
   const handleLogin = () => {
@@ -41,7 +42,7 @@ function Login() {
           history.replace("/");
         }
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => toast.error(err.message));
   };
 
   return (

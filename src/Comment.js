@@ -2,9 +2,10 @@ import { Avatar, Drawer, IconButton } from "@material-ui/core";
 import { SendOutlined } from "@material-ui/icons";
 import React, { useEffect, useState } from "react";
 import "./Comment.css";
-import { db } from "./firebase";
+import { auth, db } from "./firebase";
 import { useStateValue } from "./StateProvider";
 import firebase from "firebase";
+import { toast } from "react-toastify";
 
 function Comment() {
   const [
@@ -39,6 +40,10 @@ function Comment() {
 
   const postComment = (e) => {
     e.preventDefault();
+
+    if (!auth.currentUser) {
+      return toast.error("You need to be logged in to post a comment.");
+    }
 
     db.collection("blogs")
       .doc(commentBlog)

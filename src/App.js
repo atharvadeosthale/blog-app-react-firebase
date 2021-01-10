@@ -10,6 +10,8 @@ import { Drawer } from "@material-ui/core";
 import Write from "./Write";
 import Blog from "./Blog";
 import Comment from "./Comment";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const [{ user }, dispatch] = useStateValue();
@@ -65,6 +67,7 @@ function App() {
           <Route exact path="/blog/:id" component={Blog} />
         </Switch>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

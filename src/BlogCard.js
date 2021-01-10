@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import firebase from "firebase";
 import "./BlogCard.css";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function BlogCard({ title, image, description, id }) {
   const [likes, setLikes] = useState(0);
@@ -37,7 +38,7 @@ function BlogCard({ title, image, description, id }) {
 
   const likePost = () => {
     // Check auth
-    if (!auth.currentUser) return;
+    if (!auth.currentUser) return toast.error("You need to be logged in!");
     // TODO: Check if the post is already liked, and if it's then just remove it on click
     if (liked) {
       const query = db
