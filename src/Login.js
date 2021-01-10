@@ -15,7 +15,7 @@ function Login() {
 
   const handleRegister = () => {
     if (email === "" || password === "" || name === "") {
-      return alert("Please fill all the fields.");
+      return toast.error("Please fill all the fields.");
     }
     // register to firebase
     auth
@@ -29,6 +29,7 @@ function Login() {
             email: email,
             role: "user",
           });
+          toast.success("User registeration successful!");
         }
       })
       .catch((err) => toast.error(err.message));
@@ -39,6 +40,7 @@ function Login() {
       .signInWithEmailAndPassword(email, password)
       .then((auth) => {
         if (auth) {
+          toast.success("Login successful!");
           history.replace("/");
         }
       })
