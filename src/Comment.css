@@ -8,12 +8,11 @@
 
 .comment__commentsContainer {
   height: 80%;
-  border: 1px solid black;
 }
 
 .comment__commentBox {
   height: 20%;
-  border: 1px solid black;
+
   display: flex;
   align-items: center;
   justify-content: center;
